@@ -6,7 +6,4 @@ class Solution:
             for s in strs:
                 if len(s) == i or s[i] != strs[0][i]:
                     return strs[0][:i]
-
         return strs[0]
-        
-
