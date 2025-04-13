@@ -1,12 +1,9 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        mapped = defaultdict(list)
-
+        groups = defaultdict(list)
         for s in strs:
-            charIndices = [0] * 26
+            count = [0] * 26
             for c in s:
-                idx = ord(c) - ord(\a\)
-                charIndices[idx] += 1
-            mapped[tuple(charIndices)].append(s)
-
-        return list(mapped.values())
+                count[ord(c) - ord(\a\)] += 1
+            groups[tuple(count)].append(s)
+        return list(groups.values())
