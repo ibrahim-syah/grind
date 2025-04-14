@@ -5,8 +5,10 @@ class Solution:
         res = maxCount = 0
         for n in nums:
             hashmap[n] += 1
-            if hashmap[n] > maxCount:
-                maxCount = hashmap[n]
-                res = n
+            if hashmap[n] > length / 2:
+                return n
+            # if hashmap[n] > maxCount:
+            #     maxCount = hashmap[n]
+            #     res = n
         return res
         
