@@ -6,33 +6,32 @@ class ListNode:
 
 class MyHashMap:
     def __init__(self):
-        self.arr = [ListNode(0,0) for _ in range(10000)]
+        self.arr = [ListNode(0, 0) for i in range(10000)]
 
     def put(self, key: int, value: int) -> None:
-        selected = self.arr[key % len(self.arr)]
-        while selected.next:
-            if selected.next.key == key:
-                selected.next.value = value
+        node = self.arr[key % len(self.arr)]
+        while node.next:
+            if node.next.key == key:
+                node.next.value = value
                 return
-            selected = selected.next
-        selected.next = ListNode(key, value)
-        
+            node = node.next
+        node.next = ListNode(key, value)
+
     def get(self, key: int) -> int:
-        selected = self.arr[key % len(self.arr)]
-        while selected.next:
-            if selected.next.key == key:
-                return selected.next.value
-            selected = selected.next
+        node = self.arr[key % len(self.arr)]
+        while node.next:
+            if node.next.key == key:
+                return node.next.value
+            node = node.next
         return -1
-        
+
     def remove(self, key: int) -> None:
-        selected = self.arr[key % len(self.arr)]
-        while selected.next:
-            if selected.next.key == key:
-                selected.next = selected.next.next
+        node = self.arr[key % len(self.arr)]
+        while node.next:
+            if node.next.key == key:
+                node.next = node.next.next
                 return
-            selected = selected.next
-        return
+            node = node.next
 
 
 # Your MyHashMap object will be instantiated and called as such:
