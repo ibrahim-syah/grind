@@ -1,35 +1,33 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        def merge(arr: List[int], l: int, m: int, r: int):
-            leftSubarr = arr[l:m+1]
-            rightSubarr = arr[m+1:r+1]
-            i, j, k = l, 0, 0
-            while j < len(leftSubarr) and k < len(rightSubarr):
-                if leftSubarr[j] <= rightSubarr[k]:
-                    arr[i] = leftSubarr[j]
-                    j += 1
-                else:
-                    arr[i] = rightSubarr[k]
+        def merge(l: int, m: int, r: int):
+            leftSubarr, rightSubarr = nums[l:m+1], nums[m+1:r+1]
+            i, k, j = l, 0, 0
+            while k < len(leftSubarr) and j < len(rightSubarr):
+                if leftSubarr[k] <= rightSubarr[j]:
+                    nums[i] = leftSubarr[k]
                     k += 1
+                else:
+                    nums[i] = rightSubarr[j]
+                    j += 1
                 i += 1
-            while j < len(leftSubarr):
-                arr[i] = leftSubarr[j]
-                i += 1
-                j += 1
-            while k < len(rightSubarr):
-                arr[i] = rightSubarr[k]
-                i += 1
+            while k < len(leftSubarr):
+                nums[i] = leftSubarr[k]
                 k += 1
-        
-        def mergeSort(arr: List[int], l: int, r: int):
+                i += 1
+            while j < len(rightSubarr):
+                nums[i] = rightSubarr[j]
+                j += 1
+                i += 1
+
+        def mergeSort(l: int, r: int):
             if l == r:
                 return
             
             m = (l + r) // 2
-            mergeSort(arr, l, m)
-            mergeSort(arr, m+1, r)
-            merge(arr, l, m, r)
-            return
+            mergeSort(l, m)
+            mergeSort(m+1, r)
+            merge(l, m, r)
 
-        mergeSort(nums, 0, len(nums))
+        mergeSort(0, len(nums))
         return nums
