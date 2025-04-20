@@ -1,19 +1,16 @@
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-        """
+        \\\
         Do not return anything, modify nums in-place instead.
-        """
-        countmap = {}
-        for col in range(3):
-            countmap[col] = 0
-        for n in nums:
-            countmap[n] = countmap.get(n, 0) + 1
+        \\\
+        occurences = [0] * 3
 
-        color = 0
-        i = 0
-        # for i in range(len(nums)):
-        while color < 3:
-            for c in range(countmap[color]):
-                nums[i] = color
-                i += 1
-            color += 1
+        for n in nums:
+            occurences[n] += 1
+
+        n = 0
+        for i in range(3):
+            for j in range(occurences[i]):
+                nums[n] = i
+                n += 1
+        
