@@ -1,37 +1,36 @@
-class Node:
-    def __init__(self, key):
+class ListNode:
+    def __init__(self, key: int):
         self.key = key
         self.next = None
 
 class MyHashSet:
 
     def __init__(self):
-        self.array = [Node(0) for i in range(10000)]
+        self.arr = [ListNode(0) for _ in range(10000)]
 
     def add(self, key: int) -> None:
-        selected = self.array[key % len(self.array)]
-        while selected.next:
-            if selected.next.key == key:
+        curr = self.arr[key % len(self.arr)]
+        while curr.next:
+            if curr.next.key == key:
                 return
-            selected = selected.next
-        selected.next = Node(key)
+            curr = curr.next       
+        curr.next = ListNode(key)
 
     def remove(self, key: int) -> None:
-        selected = self.array[key % len(self.array)]
-        while selected.next:
-            if selected.next.key == key:
-                selected.next = selected.next.next
+        curr = self.arr[key % len(self.arr)]
+        while curr.next:
+            if curr.next.key == key:
+                curr.next = curr.next.next
                 return
-            selected = selected.next
+            curr = curr.next       
 
     def contains(self, key: int) -> bool:
-        selected = self.array[key % len(self.array)]
-        while selected.next:
-            if selected.next.key == key:
+        curr = self.arr[key % len(self.arr)]
+        while curr.next:
+            if curr.next.key == key:
                 return True
-            selected = selected.next
+            curr = curr.next       
         return False
-
 
 # Your MyHashSet object will be instantiated and called as such:
 # obj = MyHashSet()
