@@ -1,9 +1,9 @@
 class NumMatrix:
-
     def __init__(self, matrix: List[List[int]]):
         rows = len(matrix)
         cols = len(matrix[0])
-        self.cache = [([0] * (cols + 1)) for _ in range(rows + 1)]
+        self.cache = [[0] * (cols + 1) for _ in range(rows + 1)]         
+
         for r in range(rows):
             prefix = 0
             for c in range(cols):
@@ -12,11 +12,11 @@ class NumMatrix:
                 self.cache[r+1][c+1] = prefix + above
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        full = self.cache[row2+1][col2+1]
+        fullArea = self.cache[row2+1][col2+1]
         above = self.cache[row1][col2+1]
         left = self.cache[row2+1][col1]
         topleft = self.cache[row1][col1]
-        return full - above - left + topleft
+        return fullArea - above - left + topleft
         
 
 
