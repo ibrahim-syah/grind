@@ -1,38 +1,36 @@
 class ListNode:
-    def __init__(self, key: int, value: int):
+    def __init__(self, key, value):
         self.key = key
         self.value = value
         self.next = None
-
 class MyHashMap:
     def __init__(self):
-        self.arr = [ListNode(0, -1) for _ in range(10000)]
+        self.arr = [ListNode("dummy",0) for _ in range(10000)]
 
     def put(self, key: int, value: int) -> None:
-        curr = self.arr[key % len(self.arr)]
-        while curr.next:
-            if curr.next.key == key:
-                curr.next.value = value
+        selected = self.arr[key % len(self.arr)]
+        while selected.next:
+            if selected.next.key == key:
+                selected.next.value = value
                 return
-            curr = curr.next
-        curr.next = ListNode(key, value)
-        
+            selected = selected.next
+        selected.next = ListNode(key, value)
 
     def get(self, key: int) -> int:
-        curr = self.arr[key % len(self.arr)]
-        while curr.next:
-            if curr.next.key == key:
-                return curr.next.value
-            curr = curr.next
+        selected = self.arr[key % len(self.arr)]
+        while selected.next:
+            if selected.next.key == key:
+                return selected.next.value
+            selected = selected.next
         return -1
 
     def remove(self, key: int) -> None:
-        curr = self.arr[key % len(self.arr)]
-        while curr.next:
-            if curr.next.key == key:
-                curr.next = curr.next.next
+        selected = self.arr[key % len(self.arr)]
+        while selected.next:
+            if selected.next.key == key:
+                selected.next = selected.next.next
                 return
-            curr = curr.next
+            selected = selected.next
 
 # Your MyHashMap object will be instantiated and called as such:
 # obj = MyHashMap()
