@@ -1,12 +1,12 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        occurences = defaultdict(int)
-        maxCount, res = -1, nums[0]
+        freq = defaultdict(int)
 
+        res = 0
+        most = 0
         for n in nums:
-            occurences[n] += 1
-            if maxCount < occurences[n]:
-                maxCount = occurences[n]
+            freq[n] += 1
+            if freq[n] > most:
                 res = n
+                most = freq[n]
         return res
-        
